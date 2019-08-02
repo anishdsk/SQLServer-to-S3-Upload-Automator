@@ -65,5 +65,5 @@ def createDataFile(fileName):
     return randomFileName
 
 finalFileName = createDataFile(fileName)
-# upload file to S3 bucket using an 'Object' instance
-s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName)
+# upload file to S3 bucket using an 'Object' instance and AES-256 encryption 
+s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName, ExtraArgs = {'ServerSideEncryption': 'AES256'})
