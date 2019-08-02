@@ -42,10 +42,10 @@ def createBucketName(bucketPrefix):
     return ''.join([bucketPrefix, str(uuid.uuid4())])
 
 # creates an s3 bucket with proper location configurations
-def createBucket(bucketPrefix, s3_connection):
+def createBucket(bucket_prefix, s3Connection):
     session = boto3.session.Session()
     currentRegion = session.region_name
-    bucketName = createBucketName(bucketPrefix)
+    bucketName = createBucketName(bucket_prefix)
     bucketResponse = s3_connection.createBucket(
         Bucket=bucketName,
         CreateBucketConfiguration={
@@ -54,12 +54,16 @@ def createBucket(bucketPrefix, s3_connection):
     return bucketName, bucketResponse
 
 # create bucket using resource
-firstBucketName, firstResponse = create_bucket(
-    bucket_prefix=bucketPrefix, s3_connection=s3_resource)
+finalBucketName, response = create_bucket(
+    bucket_prefix=bucketPrefix, s3Connection=s3_resource)
 
 # generates fileName using a UUID prefix to maximize speed of file upload and retrieval
 # different prefix means filename will be mapped to different partions rather than
 # being cluttered in one map partition with other files having the same file name prefix
-def createTempFile(fileName):
+def createDataFile(fileName):
     randomFileName = ''.join([str(uuid.uuid4().hex[:4]), fileName]) # takes 4 chars of the number’s hex representation and appends it with your file name
     return randomFileName
+
+finalFileName = createDataFile(fileName)
+# upload file to S3 bucket using an 'Object' instance
+s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName)
