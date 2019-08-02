@@ -61,9 +61,11 @@ finalBucketName, response = create_bucket(
 # different prefix means filename will be mapped to different partions rather than
 # being cluttered in one map partition with other files having the same file name prefix
 def createDataFile(fileName):
-    randomFileName = ''.join([str(uuid.uuid4().hex[:4]), fileName]) # takes 4 chars of the number’s hex representation and appends it with your file name
+    # takes 4 chars of the number’s hex representation and appends it with your file name
+    randomFileName = ''.join([str(uuid.uuid4().hex[:4]), fileName])
     return randomFileName
 
 finalFileName = createDataFile(fileName)
-# upload file to S3 bucket using an 'Object' instance and AES-256 encryption 
-s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName, ExtraArgs = {'ServerSideEncryption': 'AES256'})
+# upload file to S3 bucket using an 'Object' instance and AES-256 encryption
+s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName,
+                                                                ExtraArgs = {'ServerSideEncryption': 'AES256'})
