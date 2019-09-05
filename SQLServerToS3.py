@@ -69,3 +69,10 @@ finalFileName = createDataFile(fileName)
 # upload file to S3 bucket using an 'Object' instance and AES-256 encryption
 s3_resource.Object(finalBucketName, finalFileName).upload_file(Filename = finalFileName,
                                                                 ExtraArgs = {'ServerSideEncryption': 'AES256'})
+
+# enables bucket versioning which can keep a record of your objects over time
+def enableBucketVersioning(bucketName):
+    bucketVersion = s3_resource.BucketVersioning(bucket_name)
+    bucketVersion.enable()
+
+enableBucketVersioning(finalBucketName)
