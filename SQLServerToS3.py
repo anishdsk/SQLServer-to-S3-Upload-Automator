@@ -15,8 +15,8 @@ bucketPrefix = input("Enter a prefix for the bucket name to be created " +
                         "(prefix will be added onto a randomly generated ID " +
                         "to make bucket name valid): ")
 
-serverName = 'Server=' + str(sqlServer) + ';'
-databaseName = 'Database=' + str(serverDatabase) + ';'
+serverName = 'Server=' + sqlServer + ';'
+databaseName = 'Database=' + serverDatabase + ';'
 
 # connect to your Microsoft SQL Server
 sqlConnection = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};',
