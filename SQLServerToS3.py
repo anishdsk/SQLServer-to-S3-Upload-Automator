@@ -18,7 +18,7 @@ bucketPrefix = input("Enter a prefix for the bucket name to be created " +
 # connect to your Microsoft SQL Server
 sqlConnection = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                                f'Server={sqlServer};'
-                               f'Database={databaseName};'
+                               f'Database={serverDatabase};'
                                'Trusted_Connection=yes')
 
 # open a file and query from table
