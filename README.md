@@ -1,7 +1,7 @@
 # SQLServer-to-S3-Upload-Automator
 
 ## Detailed Overview:
-Takes data from your MS SQL Server database based on input query, converts it to CSV data (keeps a copy locally), and uploads it to an AWS S3 Bucket contigent on having an AWS IAM user with proper permissions configured, AWS CLI configured properly, and having the required Python packages installed. When running the script, after providing for asked inputs on the command line (CSV file name, server name, db name, etc.), this script takes care of every step of secure data transfer from on-premise to an S3 bucket. The script can be further automated by hardcoding in the required inputs and running it as a cron job or running it on AWS Lambda after a few modifcations.
+Takes data from your MS SQL Server database based on input query, converts it to CSV data (keeps a copy locally), and uploads it to an AWS S3 Bucket contigent on having an AWS IAM user with proper permissions configured, AWS CLI configured properly, and having the required Python packages installed. When running the script, after providing for asked inputs on the command line (CSV file name, server name, db name, etc.), this script takes care of of secure data transfer from on-premise to an S3 bucket. The script can be further automated by hardcoding in the required inputs and running it as a cron job or running it on AWS Lambda after a few modifcations.
 
 ## How to Run:
 
